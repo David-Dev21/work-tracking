@@ -23,8 +23,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('state', ["pendiente", "en_progreso", "finalizado"])->default('pendiente');
             $table->enum('priority', ["baja", "media", "alta"])->default('media');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

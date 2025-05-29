@@ -51,8 +51,7 @@ class InternRegistrationResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('area.name')
                     ->label(__('headings.Area'))
-                    ->numeric()
-                    ->sortable(),
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('start_date')
                     ->label(__('headings.Start Date'))
                     ->date()

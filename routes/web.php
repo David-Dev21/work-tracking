@@ -8,6 +8,7 @@ Route::get('/', function () {
 
 Route::get('/sync', [App\Http\Controllers\SyncController::class, 'syncAll'])->name('sync.all');
 
+Route::get('/test', fn() => 'Todo ok');
 
 // Route::resource('users', App\Http\Controllers\UserController::class);
 

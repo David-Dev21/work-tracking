@@ -36,6 +36,11 @@ class InternResource extends Resource
         return __('headings.Intern');
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function table(Table $table): Table
     {
         return $table

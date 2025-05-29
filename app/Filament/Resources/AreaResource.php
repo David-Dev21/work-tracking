@@ -36,6 +36,11 @@ class AreaResource extends Resource
         return __('headings.Area');
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function table(Table $table): Table
     {
         return $table
