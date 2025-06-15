@@ -79,6 +79,7 @@ class InternResource extends Resource
                     ->action(function (Intern $record): void {
                         if (!$record->user_id) {
                             $username = $record->identity_card;
+                            $name = $record->name . ' ' . $record->last_name;
 
                             // Check for soft deleted user with same username
                             $existingUser = User::withTrashed()
@@ -97,10 +98,9 @@ class InternResource extends Resource
                                     ->send();
                             } else {
                                 // Create new user if no soft deleted user exists
-                                $password = $record->identity_card . '_' . strtolower(explode(' ', $record->name)[0]);
+                                $password = $record->university_registration;
                                 $user = User::create([
-                                    'name' => $record->name,
-                                    'email' => $record->identity_card . '@gmail.com',
+                                    'name' => $name,
                                     'username' => $username,
                                     'password' => Hash::make($password),
                                 ]);

@@ -1,14 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ActivityReportController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/admin');
 });
 
 Route::get('/sync', [App\Http\Controllers\SyncController::class, 'syncAll'])->name('sync.all');
 
-Route::get('/test', fn() => 'Todo ok');
+// Rutas para generar PDF de actividades (requiere autenticación)
+Route::get('/activities/report/pdf', [ActivityReportController::class, 'generateReport'])
+    ->name('activities.pdf.report')
+    ->middleware(['auth:web']);
+
 
 // Route::resource('users', App\Http\Controllers\UserController::class);
 

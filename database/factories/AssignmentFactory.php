@@ -27,8 +27,7 @@ class AssignmentFactory extends Factory
             'intern_id' => Intern::factory(),
             'activity_id' => Activity::factory(),
             'project_id' => Project::factory(),
-            'role' => fake()->word(),
-            'assigned_date' => fake()->date(),
+            'assigned_date' => fake()->dateTimeBetween('-2 months', 'now')->format('Y-m-d'),
         ];
     }
 }

@@ -40,8 +40,6 @@ class Activity extends Model
             'location_id' => 'integer',
             'area_id' => 'integer',
             'project_id' => 'integer',
-            'start_date' => 'timestamp',
-            'end_date' => 'timestamp',
         ];
     }
 

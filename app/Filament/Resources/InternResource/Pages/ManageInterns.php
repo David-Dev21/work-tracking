@@ -3,8 +3,10 @@
 namespace App\Filament\Resources\InternResource\Pages;
 
 use App\Filament\Resources\InternResource;
+use App\Http\Controllers\SyncController;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
+use Filament\Notifications\Notification;
 
 class ManageInterns extends ManageRecords
 {
@@ -13,7 +15,19 @@ class ManageInterns extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\Action::make('sync')
+                ->label(__('headings.Sync'))
+                ->action(function () {
+                    $controller = new SyncController();
+                    $controller->syncInterns();
+
+                    Notification::make()
+                        ->title('Pasantes sincronizados correctamente')
+                        ->success()
+                        ->send();
+                })
+                ->icon('heroicon-o-arrow-path')
+                ->color('primary'),
         ];
     }
 }

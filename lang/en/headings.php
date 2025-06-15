@@ -64,4 +64,8 @@ return [
     'Required Field Without Project' => 'Required Field Without Project',
     'Required Field Without Activity' => 'Required Field Without Activity',
     'Assign Projects or Activities' => 'Assign Projects or Activities',
+    'Role' => 'Role',
+    'Username' => 'Username',
+    'New Password' => 'New Password',
+    'Confirm New Password' => 'Confirm New Password',
 ];

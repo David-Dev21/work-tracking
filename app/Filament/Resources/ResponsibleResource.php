@@ -84,6 +84,7 @@ class ResponsibleResource extends Resource
                     ->action(function (Responsible $record): void {
                         if (!$record->user_id) {
                             $username = $record->identity_card;
+                            $name = $record->name . ' ' . $record->last_name;
 
                             // Check for soft deleted user with same username
                             $existingUser = User::withTrashed()
@@ -104,8 +105,7 @@ class ResponsibleResource extends Resource
                                 // Create new user if no soft deleted user exists
                                 $password = $record->identity_card . '_' . strtolower(explode(' ', $record->name)[0]);
                                 $user = User::create([
-                                    'name' => $record->name,
-                                    'email' => $record->name . '@gmail.com',
+                                    'name' => $name,
                                     'username' => $username,
                                     'password' => Hash::make($password),
                                 ]);

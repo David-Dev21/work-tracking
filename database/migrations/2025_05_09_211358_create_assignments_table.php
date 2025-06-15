@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('restrict')->onUpdate('cascade');
             $table->unsignedBigInteger('project_id')->nullable();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('restrict')->onUpdate('cascade');
-            $table->string('role');
             $table->date('assigned_date');
             $table->timestamps();
             $table->softDeletes();

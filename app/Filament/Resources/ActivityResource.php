@@ -286,16 +286,6 @@ class ActivityResource extends Resource
                         'media' => 'warning',
                         'alta' => 'danger',
                     }),
-                Tables\Columns\TextColumn::make('start_date')
-                    ->label(__('headings.Start Date'))
-                    ->since()
-                    ->dateTooltip()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('end_date')
-                    ->label(__('headings.End Date'))
-                    ->since()
-                    ->dateTimeTooltip()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

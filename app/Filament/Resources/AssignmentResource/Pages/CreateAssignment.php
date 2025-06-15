@@ -58,8 +58,6 @@ class CreateAssignment extends CreateRecord
         // Remove intern_id from data as we'll handle it separately
         unset($data['intern_id']);
 
-        // Add default role value
-        $data['role'] = 'Assignee';
 
         $createdAssignments = collect();
 

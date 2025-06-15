@@ -20,7 +20,6 @@ class Assignment extends Model
         'intern_id',
         'activity_id',
         'project_id',
-        'role',
         'assigned_date',
     ];
 

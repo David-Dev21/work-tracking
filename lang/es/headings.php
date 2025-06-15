@@ -63,4 +63,8 @@ return [
     'Required Field Without Project' => 'Campo Requerido Sin Proyecto',
     'Required Field Without Activity' => 'Campo Requerido Sin Actividad',
     'Assign Projects or Activities' => 'Asignar de Proyectos o Actividades',
+    'Role' => 'Rol',
+    'Username' => 'Nombre de Usuario',
+    'New Password' => 'Nueva Contraseña',
+    'Confirm New Password' => 'Confirmar Nueva Contraseña',
 ];

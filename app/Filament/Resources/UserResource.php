@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
@@ -51,10 +48,6 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->maxLength(255)
                     ->default(null),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->maxLength(255)
-                    ->default(null),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
@@ -77,14 +70,10 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('headings.Name'))
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email')
-                    ->label(__('headings.Email'))
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('roles.name')
                     ->label(__('headings.Role'))
                     ->searchable()
-                    ->badge()
-                    ->sortable(),
+                    ->badge(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('headings.Created At'))
                     ->dateTime()

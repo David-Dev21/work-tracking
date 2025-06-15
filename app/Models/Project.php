@@ -14,24 +14,7 @@ class Project extends Model
 {
     use HasFactory, SoftDeletes, HasAreaScope;
 
-    /**
-     * The "booted" method of the model.
-     *
-     * @return void
-     */
-    protected static function booted()
-    {
-        static::saved(function ($project) {
-            // Avoid infinite loop by checking if progress_percentage differs from advance
-            if ($project->progress_percentage != $project->advance) {
-                $project->advance = $project->progress_percentage;
-                // Avoid triggering the saved event again
-                $project->timestamps = false;
-                $project->saveQuietly();
-                $project->timestamps = true;
-            }
-        });
-    }
+    // Removed booted method - no longer syncing with advance column
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +26,6 @@ class Project extends Model
         'name',
         'description',
         'state',
-        'advance',
         'start_date',
         'end_date',
     ];
@@ -58,8 +40,8 @@ class Project extends Model
         return [
             'id' => 'integer',
             'area_id' => 'integer',
-            'start_date' => 'timestamp',
-            'end_date' => 'timestamp',
+            'start_date' => 'date',
+            'end_date' => 'date',
         ];
     }
 

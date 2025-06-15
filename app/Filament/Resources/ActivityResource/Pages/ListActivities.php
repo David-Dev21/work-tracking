@@ -19,8 +19,70 @@ class ListActivities extends ListRecords
             Actions\CreateAction::make()
                 ->icon('heroicon-o-plus')
                 ->size('xl')
-                ->label(__('headings.Create Activity')),
+                ->label(__('headings.Create Activity')),            // Botón para generar informe PDF
+            Actions\Action::make('generatePdfReport')
+                ->label('Reporte PDF')
+                ->size('xl')
+                ->icon('heroicon-o-document-text')
+                ->color('danger')
+                ->modalHeading('Seleccionar mes para el reporte')
+                ->modalDescription('Seleccione el mes para el que desea generar el reporte de actividades.')
+                ->modalSubmitActionLabel('Generar PDF')
+                ->form([
+                    \Filament\Forms\Components\Select::make('month')
+                        ->label('Mes')
+                        ->options([
+                            '01' => 'Enero',
+                            '02' => 'Febrero',
+                            '03' => 'Marzo',
+                            '04' => 'Abril',
+                            '05' => 'Mayo',
+                            '06' => 'Junio',
+                            '07' => 'Julio',
+                            '08' => 'Agosto',
+                            '09' => 'Septiembre',
+                            '10' => 'Octubre',
+                            '11' => 'Noviembre',
+                            '12' => 'Diciembre',
+                        ])
+                        ->default(now()->format('m'))
+                        ->required(),
+                    \Filament\Forms\Components\Select::make('year')
+                        ->label('Año')
+                        ->options([
+                            '2024' => '2024',
+                            '2025' => '2025',
+                            '2026' => '2026',
+                        ])
+                        ->default('2025')
+                        ->required(),
+                ])
+                ->action(function (array $data) {
+                    $month = $data['month'];
+                    $year = $data['year'];
+
+                    // Generate the URL for the PDF report
+                    $pdfUrl = route('activities.pdf.report', [
+                        'months' => $month,
+                        'year' => $year,
+                    ]);
+
+                    // Open in new tab using JavaScript
+                    $this->dispatch('open-pdf-in-new-tab', url: $pdfUrl);
+                }),
         ];
+    }
+
+    public function getListeners(): array
+    {
+        return [
+            'open-pdf-in-new-tab' => 'openPdfInNewTab',
+        ];
+    }
+
+    public function openPdfInNewTab($url)
+    {
+        $this->js("window.open('$url', '_blank');");
     }
 
     public function getTabs(): array

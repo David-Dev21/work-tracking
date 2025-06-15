@@ -27,12 +27,10 @@ class ActivityFactory extends Factory
             'location_id' => Location::factory(),
             'area_id' => Area::factory(),
             'project_id' => Project::factory(),
-            'name' => fake()->name(),
-            'description' => fake()->text(),
-            'state' => fake()->randomElement(["pendiente","en_progreso","finalizado"]),
-            'priority' => fake()->randomElement(["baja","media","alta"]),
-            'start_date' => fake()->dateTime(),
-            'end_date' => fake()->dateTime(),
+            'name' => fake()->sentence(3),
+            'description' => fake()->paragraph(1),
+            'state' => fake()->randomElement(["pendiente", "en_progreso", "finalizado"]),
+            'priority' => fake()->randomElement(["baja", "media", "alta"]),
         ];
     }
 }
